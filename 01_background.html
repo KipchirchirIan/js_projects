@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Change</title>
+    <style>
+        p, span {
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Hex Color: <span id="hex"></span></p>
+    <button id="btnColorChange">Change Color</button>
+</body>
+<script>
+    const btnChangeColor = document.querySelector('#btnColorChange');
+    const body = document.querySelector('body');
+    const hex = document.querySelector('#hex');
+
+    let bgColors = [
+        '#F0F8FF', // AliceBlue
+        '#FAEBD7', // AntiqueWhite
+        '#00FFFF', // Aqua
+        '#7fffd4', // Aquamarine
+        '#0000ff', // Blue
+        '#8A2BE2', // BlueViolet
+        '#a52a2a', // Brown
+        '#DEB887', // BurlyWood
+        '#5F9EA0', // CadetBlue
+        '#7FFF00', // Chartreuse
+        '#D2691E', // Chocolate
+        '#FF7F50', // Coral
+        '#6495ED', // CornflowerBlue
+        '#00ffff', // Cyan
+        '#B8860B', // DarkGoldenRod
+        '#FF1493', // DeepPink
+        '#FFD700', // Gold
+        '#4B0082', // Indigo
+        '#ADFF2F', // GreenYellow
+        '#8B4513', // SaddleBrown
+    ];
+
+    // Change the background color
+    function changeColor() {
+        let randomNumber = getRandomNumber(bgColors.length);
+        // console.log(randomNumber);
+        body.style.backgroundColor = bgColors[randomNumber];
+        // console.log("After applying color " + randomNumber);
+        hex.innerHTML = bgColors[randomNumber];
+        // console.log("After displaying hex " + randomNumber);
+        // console.log(bgColors[randomNumber]);
+    }
+
+    // Get a random number between 0 and 19
+    function getRandomNumber(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    btnChangeColor.addEventListener('click', changeColor, false);
+    
+</script>
+
+</html>

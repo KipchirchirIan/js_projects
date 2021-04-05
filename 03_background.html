@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Change</title>
+</head>
+
+<body>
+    <button id="btnColorChange">Click Me!</button>
+</body>
+<script>
+    const btnChangeColor = document.querySelector('#btnColorChange');
+    const body = document.querySelector('body');
+
+    let hexNums = ['0', '1', '2', '3', '4', '5',
+        '6', '7', '8', '9', 'A',
+        'B', 'C', 'D', 'E', 'F'
+    ];
+
+    // Change the background color
+    function changeColor() {
+        let hexVal = '#';
+
+        for (let i = 0; i < 6; i++) {
+            let randomNum = getRandomNumber(hexNums.length);
+            hexVal = hexVal.concat(hexNums[randomNum]);
+        }
+
+        console.log(hexVal);
+        body.style.backgroundColor = hexVal;
+    }
+
+    // Get a random number between 1 and length of Hex number
+    function getRandomNumber(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    btnChangeColor.addEventListener('click', changeColor, false);
+</script>
+
+</html>

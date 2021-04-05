@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Change</title>
+</head>
+
+<body>
+    <button id="btnColorChange">Click Me!</button>
+</body>
+<script>
+    const btnChangeColor = document.querySelector('#btnColorChange');
+    const body = document.querySelector('body');
+
+    let bgColors = [
+        'red',
+        'blue',
+        'green',
+        'yellow',
+        'purple',
+    ];
+
+    // Change the background color
+    function changeColor() {
+        body.style.backgroundColor = bgColors[getRandomNumber(bgColors.length)];
+    }
+
+    // Get a random number between 1 and 20
+    function getRandomNumber(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    btnChangeColor.addEventListener('click', changeColor, false);
+    
+</script>
+
+</html>

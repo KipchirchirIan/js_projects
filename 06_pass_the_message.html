@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pass The Message</title>
+    <style>
+        .hide {
+            display: none;
+        }
+
+        body {
+            background-color: skyblue;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .msg-container {
+            background-color: antiquewhite;
+            font-size: 1.5em;
+            font-family: "Droid Sans", sans-serif;
+            margin-top: 100px;
+            min-height: 400px;
+            padding: 16px;
+        }
+
+        #input-box {
+            background-color: ghostwhite;
+            border: 1px solid #000;
+        }
+
+        #submit {
+            display: block;
+            font-size: 18px;
+            background-color: skyblue;
+            border-color: skyblue;
+            cursor: pointer;
+            width: 20%;
+            height: 50px;
+            margin: 10px auto;
+        }
+
+        #message-area {
+            color: skyblue;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+<main class="container">
+    <h1 class="hide">Pass The Message Project</h1>
+    <section class="msg-container">
+        <h1>A Message You Would Like To Pass</h1>
+        <section>
+            <div class="input-area">
+                <textarea id="input-box" name="message" cols="70" rows="5">
+                </textarea>
+                <button id="submit">Submit</button>
+            </div>
+            <p>Last Message Delivered</p>
+            <p id="message-area"></p>
+        </section>
+    </section>
+</main>
+</body>
+<script>
+    // ✅ TODO Get message from input -- DONE
+    // ✅ TODO: Display message below last message delivered -- DONE
+    // TODO: Clear input box after ENTER key is pressed
+    // TODO: Show alert message if nothing is submitted. Hide after 2 seconds
+    const message = document.querySelector('#message-area');
+    const textArea = document.querySelector('#input-box');
+    const submitButton = document.querySelector('#submit');
+
+    function passMessage() {
+        // console.log(textArea.value);
+        message.innerHTML = textArea.value;
+
+        // Clear Input area
+        textArea.value = "";
+    }
+
+    submitButton.addEventListener('click', passMessage, false);
+    textArea.addEventListener('keyup', function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            submitButton.click();
+        }
+    });
+</script>
+</html>

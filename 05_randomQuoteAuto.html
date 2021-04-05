@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote</title>
+    <style>
+        body {
+            background-color: #302B27;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        section {
+            background-color: rebeccapurple;
+            color: white;
+            display: inline-block;
+            padding: 16px;
+            width: 55%;
+        }
+
+        section q {
+            font-size: 1.8em;
+        }
+
+        q::before {
+            font-size: 5em;
+            line-height: 0.75;
+        }
+
+        footer {
+            font-size: 1.2em;
+            text-align: right;
+            color: lightgray;
+            padding: 2px;
+        }
+
+        footer p {
+            margin-right: 10px;
+        }
+
+        #genq {
+            /* position: absolute; */
+            margin: 0 auto;
+            display: block;
+            border-style: none;
+
+            margin-top: 20px;
+            height: 50px;
+            width: 150px;
+            background-color: rebeccapurple;
+            color: white;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: red;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 1000px) {
+            section {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Random Quote Generator</h1>
+    <main>
+        <section id="quote-cont">
+            <h2 class="hide">Quote</h2>
+            <q id="quote"></q>
+            <footer>
+                <h3 class="hide">Author</h3>
+                <p id="author"></p>
+            </footer>
+        </section>
+    </main>
+   <div>
+    <!-- <button id="genq">Generate Quote</button> -->
+   </div>
+</body>
+<script>
+    const BODY = document.querySelector('body');
+    const AUTHOR = document.querySelector('#author');
+    const QUOTE = document.querySelector('#quote');
+    // const BTNGENQUOTE = document.querySelector('#genq');
+
+    let quotesArr = [
+        "Believe you can and you're halfway there.",
+        "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+        "When you have a dream, you've got to grab it and never let go.",
+        "I can't change the direction of the wind, but I can adjust my sails to always reach my destination.",
+        "No matter what you're going through, there's a light at the end of the tunnel.",
+    ];
+
+    let authorsArr = [
+        "Theodore Roosevelt",
+        "Zig Ziglar",
+        "Carol Burnett",
+        "Jimmy Dean",
+        "Demi Lovato",
+    ];
+
+    let randomNumber = function name(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    let randomQuote = function () {
+        let randomNum = randomNumber(quotesArr.length);
+        console.log(randomNum);
+
+        QUOTE.innerHTML = quotesArr[randomNum];
+        AUTHOR.innerHTML = '-&nbsp;' + authorsArr[randomNum];
+    }
+
+    BODY.addEventListener('load', randomQuote(), false);
+    let interval = setInterval(randomQuote, 10000);
+
+</script>
+</html>
