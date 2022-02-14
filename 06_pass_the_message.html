@@ -48,6 +48,19 @@
             font-weight: bold;
         }
 
+        .feedback {
+            color: red;
+            font-weight: bold;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
     </style>
 </head>
 <body>
@@ -61,8 +74,12 @@
                 </textarea>
                 <button id="submit">Submit</button>
             </div>
+        </section>
+        <section>
             <p>Last Message Delivered</p>
-            <p id="message-area"></p>
+            <div id="message-area">
+            </div>
+            <p class="feedback hide">No Message Delivered!!</p>
         </section>
     </section>
 </main>
@@ -70,15 +87,31 @@
 <script>
     // ✅ TODO Get message from input -- DONE
     // ✅ TODO: Display message below last message delivered -- DONE
-    // TODO: Clear input box after ENTER key is pressed
-    // TODO: Show alert message if nothing is submitted. Hide after 2 seconds
+    // ✅ Clear input box after ENTER key is pressed
+    // ✅ Show alert message if nothing is submitted. Hide after 2 seconds
     const message = document.querySelector('#message-area');
     const textArea = document.querySelector('#input-box');
     const submitButton = document.querySelector('#submit');
+    const feedback = document.querySelector('.feedback');
 
     function passMessage() {
         // console.log(textArea.value);
-        message.innerHTML = textArea.value;
+        let passedMsg = textArea.value;
+
+        if (passedMsg.trim() === "") {
+            feedback.classList.remove('hide');
+            feedback.classList.add('show');
+
+            message.innerHTML = "";
+            
+            setTimeout(function() {
+                feedback.classList.remove('show');
+                feedback.classList.add('hide');
+            }, 2000);
+        } else {
+            message.innerHTML = passedMsg;
+        }
+        
 
         // Clear Input area
         textArea.value = "";
