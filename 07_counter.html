@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Project</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .counter-cont {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+        .counter-cont p {
+            font-size: 3em;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .buttons-cont {
+            display: flex;
+            flex-direction: column;
+        }
+        .buttons-cont button {
+            background-color: blue;
+            color: white;
+            width: 150px;
+            padding: 10px;
+            margin: 6px 0;
+            text-transform: uppercase;
+            border: 1px solid green;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #counter {
+            font-size: 10em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="counter-cont">
+            <p>Counter</p>
+            <div id="counter">0</div>
+            <div class="buttons-cont">
+                <button type="button" id="lowerCountBtn">Lower Count</button>
+                <button type="button" id="addCountBtn">Add Count</button>
+            </div>
+        </section>
+    </main>
+    <script>
+        const COUNTER_AREA = document.querySelector('#counter');
+        const LOWER_COUNT_BTN = document.querySelector('#lowerCountBtn');
+        const ADD_COUNT_BTN = document.querySelector('#addCountBtn');
+
+        let count = 0;
+        COUNTER_AREA.innerHTML = count;
+
+        LOWER_COUNT_BTN.addEventListener('click', lowerCount)
+        ADD_COUNT_BTN.addEventListener('click', addCount);
+
+        function lowerCount() {
+            count--;
+            
+            switchColor(count);
+
+            COUNTER_AREA.innerHTML = count;
+        }
+
+        function addCount() {
+            count++;
+
+            switchColor(count);
+        
+            COUNTER_AREA.innerHTML = count;
+        }
+
+        function switchColor(val) {
+            if (count > 0) {
+                COUNTER_AREA.style.color = "green";
+            } else if (count < 0) {
+                COUNTER_AREA.style.color = "red";
+            } else {
+                COUNTER_AREA.style.color = "black";
+            }
+        }
+    </script>
+</body>
+</html>
