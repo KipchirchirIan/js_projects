@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Background Image Slider</title>
+    <style>
+        .gallery-cont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #gallery {
+            display: flex;
+        }
+
+        img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            padding: 8px;
+        }
+
+        section img {
+            display: none;
+        }
+
+        #controls {
+            font-size: 1.5em;
+        }
+
+        #prev, #next {
+            padding: 0 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        #controls {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="gallery-cont">
+        <section id="gallery">
+            <img src="image1.jpg" alt="Image One">
+            <img src="image2.jpg" alt="Image Two">
+            <img src="image3.jpg" alt="Image Three">
+        </section>
+        <section id="controls">
+            <span id="prev">&lsaquo;prev</span>
+            <span id="next">next&rsaquo;</span>
+        </section>
+    </section>
+</main>
+<script>
+    // TODO: 🔳 Add animations
+    // TODO: 🔳 Allow pausing of slider
+    // TODO: 🔳 Refactor
+    const IMAGES = document.querySelectorAll("#gallery img"); // Array of images to cycle through
+    const PREV_BTN = document.querySelector("#prev");
+    const NEXT_BTN = document.querySelector("#next");
+    let currentIndex = 0; // Index of current image
+
+    // Set default image to show if not set in CSS
+    IMAGES[currentIndex].classList.add("show");
+
+    /**
+     * Cycle through images in array
+     * Go to next image after every 5 seconds
+     */
+    setInterval(changeImage, 5000);
+
+    function changeImage() {
+        nextImage();
+    }
+
+    /**
+     * Get index of next image to display
+     * @returns {number}
+     */
+    function nextIndex() {
+        if (currentIndex === IMAGES.length - 1) {
+            currentIndex = 0;
+        } else {
+            currentIndex++;
+        }
+
+        return currentIndex;
+    }
+
+    /**
+     * Get index of previous image to display
+     * @returns {number}
+     */
+    function prevIndex() {
+        if (currentIndex === 0) {
+            currentIndex = IMAGES.length - 1;
+        } else {
+            currentIndex--;
+        }
+
+        return currentIndex;
+    }
+
+    function nextImage() {
+        IMAGES[currentIndex].classList.remove("show");
+        IMAGES[currentIndex].classList.add("hide");
+        let nextIdx = nextIndex();
+        IMAGES[nextIdx].classList.remove("hide");
+        IMAGES[nextIdx].classList.add("show");
+    }
+
+    function prevImage() {
+        IMAGES[currentIndex].classList.remove("show");
+        IMAGES[currentIndex].classList.add("hide");
+        let prevIdx = prevIndex();
+        IMAGES[prevIdx].classList.remove("hide");
+        IMAGES[prevIdx].classList.add("show");
+    }
+
+    PREV_BTN.addEventListener('click', prevImage);
+    NEXT_BTN.addEventListener('click', nextImage);
+</script>
+</body>
+</html>
